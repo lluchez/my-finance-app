@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>My Finance App</title>
+    <%= favicon_link_tag 'logo.ico' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,18 +10,16 @@
   </head>
 
   <body>
+    <%= render "home/header" %>
     <div class="container">
       <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-info") %>
+        <%=
+          hash = {"error" => "alert-danger", "notice" => "alert-info"}
+          alert_class = "alert " + hash[name]
+          content_tag(:div, msg, class: alert_class)
+        %>
       <% end %>
       <%= yield %>
-      <div>
-      <% if user_signed_in? %>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-      <% else %>
-        <%= link_to('Login', new_user_session_path)  %>
-      <% end %>
-      </div>
     </div>
   </body>
 </html>
