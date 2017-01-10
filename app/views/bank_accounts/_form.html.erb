@@ -1,0 +1,24 @@
+<%= form_for(bank_account, :html => {:class => "form-horizontal center"}) do |f| %>
+  <% if bank_account.errors.any? %>
+    <div id="error_explanation" class="alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+      <ul>
+      <% bank_account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "Account name:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary pull-right" %>
+    <%= link_to 'Back', bank_accounts_path, class: "btn btn-link pull-right" %>
+  </div>
+<% end %>

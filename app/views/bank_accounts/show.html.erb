@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bank_account.name if @bank_account.present? %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bank_account.owner_id if @bank_account.present? %>
+</p>
+
+<%= link_to 'Edit', edit_bank_account_path(@bank_account) if @bank_account.present? %> |
+<%= link_to 'Back', bank_accounts_path %>
