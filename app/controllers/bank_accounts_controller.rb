@@ -1,7 +1,6 @@
 class BankAccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
-  #before_action :prepare_owners, :only => [:create, :edit, :new]
 
   # GET /bank_accounts
   # GET /bank_accounts.json
@@ -26,8 +25,7 @@ class BankAccountsController < ApplicationController
   # POST /bank_accounts
   # POST /bank_accounts.json
   def create
-    @bank_account = BankAccount.new(bank_account_params)
-    @bank_account.owner_id = current_user.id
+    @bank_account = BankAccount.new(bank_account_params.merge(:owner_id => current_user.id))
 
     respond_to do |format|
       if @bank_account.save
@@ -74,12 +72,7 @@ class BankAccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bank_account
-      begin
-        @bank_account = BankAccount.find(params[:id])
-        @bank_account = (@bank_account.present? && @bank_account.owner_id == current_user.id) ? @bank_account : nil
-      rescue ActiveRecord::RecordNotFound => e
-        @bank_account = nil
-      end
+      @bank_account = BankAccount.where(:id => params[:id], :owner_id => current_user.id).last or not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -87,9 +80,4 @@ class BankAccountsController < ApplicationController
       #params.require(:bank_account).permit(:name, :owner_id) 
       params.require(:bank_account).permit(:name)
     end
-
-    #def prepare_owners
-    #  @owners = User.all
-    #end
-
 end

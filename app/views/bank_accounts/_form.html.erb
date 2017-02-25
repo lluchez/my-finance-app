@@ -18,7 +18,9 @@
   </div>
 
   <div class="actions">
-    <%= f.submit :class => "btn btn-primary pull-right" %>
-    <%= link_to 'Back', bank_accounts_path, class: "btn btn-link pull-right" %>
+    <%= f.submit :class => "btn btn-success pull-right" %>
+    <%= link_to bank_accounts_path, class: "btn btn-link pull-right" do %>
+      <i class="glyphicon glyphicon-arrow-left"></i> Back to Accounts list
+    <% end %>
   </div>
 <% end %>

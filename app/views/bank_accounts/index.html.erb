@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bank Accounts</h1>
+<h1>My Bank Accounts</h1>
 
 <table class="table table-manage table-responsive table-striped table-hover table-bordered table-condensed">
   <thead>
@@ -27,4 +27,6 @@
 
 <br>
 
-<%= link_to 'New Bank Account', new_bank_account_path %>
+<%= link_to new_bank_account_path, class: "btn btn-primary pull-right" do %>
+  <i class="glyphicon glyphicon-plus"></i> New Bank Account
+<% end %>
