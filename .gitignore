@@ -45,8 +45,13 @@ config/initializers/secret_token.rb
 *.bowerrc
 bower.json
 
+# ignore NodeJS files
+node_modules/
+
 # Ignore pow environment settings
 .powenv
 
 # Ignore Byebug command history file.
-.byebug_history
+.byebug_history/node_modules
+/app/assets/javascripts/react_bundle.js
+/app/assets/stylesheets/react_bundle.css
