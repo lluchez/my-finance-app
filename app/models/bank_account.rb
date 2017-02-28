@@ -1,9 +1,6 @@
 class BankAccount < ApplicationRecord
   belongs_to :owner, class_name: "User", :validate => true, :foreign_key => 'owner_id'
-  before_save :validate_model
+  belongs_to :statement_parser, class_name: StatementParsers::ParserBase, :validate => true, :foreign_key => 'statement_parser_id'
 
-  private
-    def validate_model
-      errors.add(:name, "Bank account is required") if self.name.blank?
-    end
+  validates_presence_of :name
 end
