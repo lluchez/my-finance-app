@@ -14,11 +14,16 @@
     <div class="container">
       <% flash.each do |name, messages| %>
         <%
-          hash = {"error" => "alert-danger", "notice" => "alert-info"}
-          alert_class = "alert " + hash[name]
+          classes_map = {
+            "error" => "alert-danger",
+            "alert" => "alert-danger",
+            "notice" => "alert-info"
+          }
+          classnames = ["alert"]
+          classnames += [classes_map[name]] if classes_map[name]
           messages = [messages] if messages.kind_of?(String)
         %>
-        <div id="error_explanation" class="<%= alert_class %>">
+        <div id="error_explanation" class="<%= classnames.join(" ") %>">
           <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
           <ul>
             <% messages.each do |message| %>
