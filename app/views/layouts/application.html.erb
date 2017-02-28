@@ -12,12 +12,20 @@
   <body>
     <%= render "home/header" %>
     <div class="container">
-      <% flash.each do |name, msg| %>
-        <%=
+      <% flash.each do |name, messages| %>
+        <%
           hash = {"error" => "alert-danger", "notice" => "alert-info"}
           alert_class = "alert " + hash[name]
-          content_tag(:div, msg, class: alert_class)
+          messages = [messages] if messages.kind_of?(String)
         %>
+        <div id="error_explanation" class="<%= alert_class %>">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+          <ul>
+            <% messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
       <%= yield %>
     </div>

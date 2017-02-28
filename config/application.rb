@@ -18,6 +18,7 @@ module MyFinanceApp
 
     # TELL RAILS TO USE OUR ROUTES FOR ERROR HANDLING
     #config.exceptions_app = self.routes
+    #config.autoload_paths += %W(#{config.root}/app/models/statement_parsers)
   end
 end
 

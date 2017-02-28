@@ -1,6 +1,6 @@
 <%= form_for(bank_account, :html => {:class => "form-horizontal center"}) do |f| %>
   <% if bank_account.errors.any? %>
-    <div id="error_explanation" class="alert alert-success">
+    <div id="error_explanation" class="alert alert-danger">
       <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
       <ul>
       <% bank_account.errors.full_messages.each do |message| %>
@@ -9,11 +9,20 @@
       </ul>
     </div>
   <% end %>
+  <% @object = bank_account %>
+  <%= render "layouts/form_errors_panel" %>
 
   <div class="form-group">
     <%= f.label :name, "Account name:", class: "col-md-4 control-label" %>
     <div class="col-md-8">
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", :required => true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, "Statement parser:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.select :statement_parser_id, options_for_select(@statement_parsers, bank_account.statement_parser_id), {:prompt => "<Select a Statement Parser>"}, {:class => "form-control", :required => true} %>
     </div>
   </div>
 

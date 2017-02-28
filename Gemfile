@@ -47,6 +47,12 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # To detect N+1 queries
   gem 'bullet'
+  # Allow debugger
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
 end
 
 group :development do
