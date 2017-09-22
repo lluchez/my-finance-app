@@ -65,8 +65,8 @@ group :development do
 end
 
 group :production do
-  gem 'pg' #,             '0.17.1' # Heroku uses PostgreSQL
-  gem 'rails_12factor' #, '0.0.2'  # Heroku needs this gem to serve static assets such as images and CSS
+  gem 'pg', '~> 0.21.0' # Heroku uses PostgreSQL
+  gem 'rails_12factor'  #, '0.0.2'  # Heroku needs this gem to serve static assets such as images and CSS
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
