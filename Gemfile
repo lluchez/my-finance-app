@@ -42,7 +42,9 @@ gem 'react_webpack_rails'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  # gem 'sqlite3'
+  # Use mysql2 as the database for Active Record
+  gem 'mysql2', '~> 0.4.8'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # To detect N+1 queries
@@ -72,3 +74,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rwr-view_helpers', '~> 0.1.1'
+
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
